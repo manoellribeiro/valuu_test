@@ -20,7 +20,6 @@ class AlcanceApi implements ApiInterface {
           "refreshToken": "string"
         } 
       );
-      print(loginResponse);
       return User.fromJson(loginResponse.data);
     } on DioError catch (e) {
       throw (e.message);
