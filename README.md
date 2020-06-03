@@ -1,16 +1,9 @@
-# valuu_app
+# Valuu Test
 
-A new Flutter project.
+Um projeto feito como teste para a startup Valuu.
 
-## Getting Started
+- Consegui implementar a listagem dos itens do Feed, a paginação não tive tempo de fazer. Mas eu tentaria passar um scrollcontroller para listview e adicionar um scroll listener, sempre que chegasse ao máximo de scroll, eu chamaria um método do meu home controller que adicionaria itens a lista, assim aumentando com os novos itens.
 
-This project is a starting point for a Flutter application.
+- O icone de share sempre está aparecendo por que nessa listagem o campo isTheUser sempre vem como true. Da mesma forma, o userLiked sempre vem como false, então a cor não muda. Mas a lógica está implementada no componente CardFeedWidget.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Não consegui resgatar os dados do usuário salvos com o shared preferences, por isso, passei o token direto da API para fazer a lista funcionar. A minha dificuldade aqui foi não ter um módulo login e abstrair o login sem interação do usuário.
