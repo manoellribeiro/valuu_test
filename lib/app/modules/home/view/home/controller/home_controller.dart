@@ -35,9 +35,4 @@ abstract class _HomeControllerBase with Store {
   Future fetchFeedItems() async {
     feedItemsList =  await apiService.getFeedItems(user.acessToken, user.teams[1].organizationId, 1);
   }
-
-  /* @action
-  fetchFeedItems() async{
-    feedItemsList = apiService.getFeedItems("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InJhaXNhc3BhZ25vbDZAZ21haWwuY29tIiwiRnVsbE5hbWUiOiJSYWlzYSBTcGFnbm9sIiwibmFtZWlkIjoiMDIzYTI2MGUtZTFmNi00MTlmLTgyMmUtN2YzODMyNGYzMjI4IiwiZW1haWwiOiJyYWlzYXNwYWdub2w2QGdtYWlsLmNvbSIsIm5iZiI6MTU5MTIwNDg2MSwiZXhwIjoxNTkyNTAwODYxLCJpYXQiOjE1OTEyMDQ4NjF9.X3tIMx4dsgPdtsFLIw9gCTMBddsKL7HTd2MPnDOQhk0", "a70b8695-db6e-4539-972a-4c8cecc60b63", 1).asObservable();
-  } */
 }
