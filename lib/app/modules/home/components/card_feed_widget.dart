@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:valuu_app/app/config/size_config.dart';
 import 'package:valuu_app/app/modules/home/models/Feed/FeedItem.dart';
-import 'package:valuu_app/app/shared/size_config.dart';
 
 class FeedCardWidget extends StatelessWidget {
 
@@ -45,9 +45,11 @@ class FeedCardWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-              Icon(Icons.textsms, color: Colors.grey,),
+              Icon(
+                Icons.textsms,
+                color: Colors.grey),
               Icon(Icons.thumb_up, color: feedItem.userLiked ? Color(0xff512AB1): Colors.grey ),
-              feedItem.isTheUser ? Icon(Icons.share, color: Colors.grey,): Container(),
+              Icon(Icons.share, color: Colors.grey,),
             ],),
             SizedBox(height: SizeConfig.heightMultiplier * 2.5),
         ],),

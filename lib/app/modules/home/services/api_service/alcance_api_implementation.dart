@@ -32,8 +32,9 @@ class AlcanceApi implements ApiInterface {
       var feedResponse = await dio.get("api/v1/Progress/Feeds", queryParameters: {
         "organizationId": organizationId,
         "pageNumber": pageNumber
-      }, options: Options(headers: {
-        "Authorization": "Bearer $userToken" 
+      }, options: Options(
+        headers: {
+         "Authorization": "Bearer $userToken" 
       }));
         return (feedResponse.data['items'] as List).map((item) => FeedItem.fromJson(item)).toList();
     } on DioError catch (e) {

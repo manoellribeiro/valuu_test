@@ -12,36 +12,54 @@ mixin _$HomeController on _HomeControllerBase, Store {
   final _$feedItemsListAtom = Atom(name: '_HomeControllerBase.feedItemsList');
 
   @override
-  ObservableFuture<List<FeedItem>> get feedItemsList {
+  List<FeedItem> get feedItemsList {
     _$feedItemsListAtom.reportRead();
     return super.feedItemsList;
   }
 
   @override
-  set feedItemsList(ObservableFuture<List<FeedItem>> value) {
+  set feedItemsList(List<FeedItem> value) {
     _$feedItemsListAtom.reportWrite(value, super.feedItemsList, () {
       super.feedItemsList = value;
     });
   }
 
-  final _$_HomeControllerBaseActionController =
-      ActionController(name: '_HomeControllerBase');
+  final _$userAtom = Atom(name: '_HomeControllerBase.user');
 
   @override
-  dynamic fetchFeedItems() {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.fetchFeedItems');
-    try {
-      return super.fetchFeedItems();
-    } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
-    }
+  User get user {
+    _$userAtom.reportRead();
+    return super.user;
+  }
+
+  @override
+  set user(User value) {
+    _$userAtom.reportWrite(value, super.user, () {
+      super.user = value;
+    });
+  }
+
+  final _$getUserDataAsyncAction =
+      AsyncAction('_HomeControllerBase.getUserData');
+
+  @override
+  Future<dynamic> getUserData() {
+    return _$getUserDataAsyncAction.run(() => super.getUserData());
+  }
+
+  final _$fetchFeedItemsAsyncAction =
+      AsyncAction('_HomeControllerBase.fetchFeedItems');
+
+  @override
+  Future<dynamic> fetchFeedItems() {
+    return _$fetchFeedItemsAsyncAction.run(() => super.fetchFeedItems());
   }
 
   @override
   String toString() {
     return '''
-feedItemsList: ${feedItemsList}
+feedItemsList: ${feedItemsList},
+user: ${user}
     ''';
   }
 }

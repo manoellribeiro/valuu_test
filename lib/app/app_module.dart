@@ -16,16 +16,14 @@ import 'modules/home/services/local_storage/local_storage_service_interface.dart
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => BaseOptions(baseUrl: BASE_URL), singleton: true, lazy: false),
-        Bind((i) => Dio(Modular.get<BaseOptions>()), singleton: true, lazy: false),
-        Bind((i) => AlcanceApi(dio: Modular.get<Dio>()), singleton: true, lazy: false),
-        Bind((i) => SharedPreferencesService(), singleton: true, lazy: false),
-        Bind((i) => User(), lazy: true, singleton: true), 
+        Bind((i) => BaseOptions(baseUrl: BASE_URL)),
+        Bind((i) => Dio(Modular.get<BaseOptions>())),
+        Bind((i) => AlcanceApi(dio: Modular.get<Dio>())),
+        Bind((i) => SharedPreferencesService()),
         Bind((i) => UserRepository(
           api: Modular.get<ApiInterface>(),
-          localStorage: Modular.get<LocalStorageServiceInterface>(),
-          user: Modular.get<User>()
-          )), 
+          localStorage: Modular.get<LocalStorageServiceInterface>()
+        )),
       ];
 
   @override

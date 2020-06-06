@@ -1,14 +1,16 @@
-import 'package:valuu_app/app/modules/home/home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:valuu_app/app/modules/home/home_page.dart';
+import 'package:valuu_app/app/modules/home/repository/user_repository.dart';
 import 'package:valuu_app/app/modules/home/services/api_service/api_interface.dart';
-import 'package:valuu_app/app/modules/home/services/local_storage/local_storage_service_interface.dart';
+import 'package:valuu_app/app/modules/home/view/home/controller/home_controller.dart';
+import 'package:valuu_app/app/modules/home/view/home/screen/home_page.dart';
+
 
 class HomeModule extends ChildModule {
   @override
   List<Bind> get binds => [
         Bind((i) => HomeController(
           apiService: Modular.get<ApiInterface>(),
+          userRepository: Modular.get<UserRepository>(),
           )),
       ];
 

@@ -23,7 +23,11 @@ class User {
       this.refreshToken,
       this.expiration});
 
-  User.fromJson(Map<String, dynamic> json) {
+  copyWith(){
+
+  }
+
+   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     fullName = json['fullName'];
     photo = json['photo'];

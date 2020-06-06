@@ -9,6 +9,11 @@ class Ranking {
     position = json['position'];
   }
 
+  modifyFromJson(Map<String, dynamic> json) {
+    this.points = json['points'];
+    this.position = json['position'];
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['points'] = this.points;

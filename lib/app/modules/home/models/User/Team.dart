@@ -20,6 +20,14 @@ class Teams {
     image = json['image'];
   }
 
+  modifyFromJson(Map<String, dynamic> json) {
+    this.id = json['id'];
+    this.name = json['name'];
+    this.organizationId = json['organizationId'];
+    this.organizationName = json['organizationName'];
+    this.image = json['image'];
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
