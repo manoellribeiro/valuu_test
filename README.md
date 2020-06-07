@@ -1,9 +1,54 @@
-# Valuu Test
+<h1 align="center">
+  <img src="" width="200px" />
+</h1>
 
-Um projeto feito como teste para a startup Valuu.
+<h1 align="center">
+  <img src="https://image.flaticon.com/icons/svg/3023/3023325.svg" width="50px" />
+</h1>
+<h3 align="center">
+  Flutter - Valuu Test
+</h3>
 
-- Consegui implementar a listagem dos itens do Feed, a paginação não tive tempo de fazer. Mas eu tentaria passar um scrollcontroller para listview e adicionar um scroll listener, sempre que chegasse ao máximo de scroll, eu chamaria um método do meu home controller que adicionaria itens a lista, assim aumentando com os novos itens.
+<p align="center">A mobile application developed as a challenge for the startup Valuu.</p>
 
-- O icone de share sempre está aparecendo por que nessa listagem o campo isTheUser sempre vem como true. Da mesma forma, o userLiked sempre vem como false, então a cor não muda. Mas a lógica está implementada no componente CardFeedWidget.
+## 📱 Features
 
-- Não consegui resgatar os dados do usuário salvos com o shared preferences, por isso, passei o token direto da API para fazer a lista funcionar. A minha dificuldade aqui foi não ter um módulo login e abstrair o login sem interação do usuário, mas escrevi todos os services e o repository com a lógica para implementar esse requisito.
+- Fetch user data from API and store it on shared preferences.
+- Fetch user data from Shared Preferences if the user is logged in.
+- List View with pagination, the api is called only if the user arrive the bottom of scroll and there is more pages.
+- Loading animation in the bottom of List View.
+- The share icon appears if the post was made by the logged user.
+- The like icon change the color if the logged user liked it.
+
+## 🔍 Tests
+
+- I wrote test to dependency injection, services and home controller.
+<h1 align="start">
+  <img src="https://github.com/manoellribeiro/valuu_test/blob/master/readme/tests.png" width="300px" />
+</h1>
+
+
+## 🚀 Technologies
+
+Flutter — Google’s UI toolkit for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.
+
+## ✋🏻 Prerequsites
+
+- [Flutter](https://flutter.dev)
+- [Dart](https://dart.dev)
+
+## 🔥 Run
+
+1. Clone this repository;
+2. Acess the folder `cd valuu test`;
+3. Run `flutter pub get` to install dependencies;
+4. Connect your device or emulator;
+6. Run `fluter run`.
+
+## 🧑‍💻 Contact me
+
+* Email-me: mano12328@hotmail.com
+* Connect with me on [LinkedIn.](https://www.linkedin.com/in/manoellribeiro/)
+
+
+
