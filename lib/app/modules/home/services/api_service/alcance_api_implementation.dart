@@ -1,4 +1,7 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
+import 'package:valuu_app/app/interceptor/dio_connectivity_request_retried.dart';
+import 'package:valuu_app/app/interceptor/retry_interceptor.dart';
 import 'package:valuu_app/app/modules/home/models/Feed/FeedItem.dart';
 import 'package:valuu_app/app/modules/home/models/Feed/FeedRequest.dart';
 import 'package:valuu_app/app/modules/home/models/User/User.dart';
@@ -8,7 +11,16 @@ class AlcanceApi implements ApiInterface {
   
   final Dio dio;
 
-  AlcanceApi({this.dio});
+  AlcanceApi({this.dio}){
+    dio
+    .interceptors
+      .add(RetryOnConnectionChangeInterceptor(
+        requestRetrier: DioConnectivityRequestRetrier(
+          dio: Dio(),
+          connectivity: Connectivity()
+          )
+      ));
+  }
   
   @override
   Future<User> login(String email, String password) async {

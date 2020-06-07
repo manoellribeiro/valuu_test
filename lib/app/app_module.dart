@@ -1,6 +1,9 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
+import 'package:valuu_app/app/interceptor/dio_connectivity_request_retried.dart';
+import 'package:valuu_app/app/interceptor/retry_interceptor.dart';
 import 'package:valuu_app/app/modules/home/repository/user_repository.dart';
 import 'package:valuu_app/app/modules/home/services/api_service/alcance_api_implementation.dart';
 import 'package:valuu_app/app/modules/home/services/local_storage/shared_preferences_service_implementation.dart';
@@ -8,7 +11,6 @@ import 'package:valuu_app/app/modules/home/utils/constants.dart';
 
 import 'app_widget.dart';
 import 'modules/home/home_module.dart';
-import 'modules/home/models/User/User.dart';
 import 'modules/home/services/api_service/api_interface.dart';
 import 'modules/home/services/local_storage/local_storage_service_interface.dart';
 
