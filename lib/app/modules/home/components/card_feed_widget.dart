@@ -101,7 +101,7 @@ class FeedCardWidget extends StatelessWidget {
                       progressColor: Colors.green,
                       percent: 0.8,
                       animation: true,
-                      animationDuration: 500,
+                      animationDuration: 1000,
                       lineHeight: SizeConfig.heightMultiplier * 1.2,
                       width: SizeConfig.widthMultiplier * 15,
                     ),
