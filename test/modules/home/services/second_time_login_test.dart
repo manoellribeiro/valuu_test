@@ -62,7 +62,7 @@ void main() {
     });
 
     when(apiServiceMock.getFeedRequest(ACESS_TOKEN, ORGANIZATION_ID, 1)).thenAnswer((_) async{
-      return Future.value(FeedRequest.fromJson(FEED_JSON));
+      return Future.value(FeedRequest.fromJson(FIRST_FEED_JSON));
     });
 
      test("If the user has already login fetch user data from local storage", () async {

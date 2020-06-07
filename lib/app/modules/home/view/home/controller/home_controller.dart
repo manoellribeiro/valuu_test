@@ -37,7 +37,7 @@ abstract class _HomeControllerBase with Store {
 
   @action
   Future fetchFeedItems() async {
-    feedRequest =  await apiService.getFeedRequest(user.acessToken, user.teams[0].organizationId, 1);
+    feedRequest =  await apiService.getFeedRequest(user.acessToken, user.teams[1].organizationId, 1);
     feedItemsList = feedRequest.items.asObservable();
   }
 
@@ -47,7 +47,7 @@ abstract class _HomeControllerBase with Store {
   @action
   Future fetchMoreFeedItems() async {
     if(thereAreMoreItems()){
-      feedRequest = await apiService.getFeedRequest(user.acessToken, user.teams[0].organizationId, feedRequest.pageIndex + 1);
+      feedRequest = await apiService.getFeedRequest(user.acessToken, user.teams[1].organizationId, feedRequest.pageIndex + 1);
       feedItemsList.addAll(feedRequest.items);
     }
   }

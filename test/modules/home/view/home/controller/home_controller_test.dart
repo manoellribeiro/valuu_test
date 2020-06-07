@@ -24,37 +24,8 @@ void main() {
   ApiServiceMock apiServiceMock = ApiServiceMock();
   LocalStorageMock localStorageMock = LocalStorageMock(); 
 
-  initModule(
-    AppModule(),
-    initialModule: true,
-    changeBinds: [
-      Bind<ApiInterface>((i) => apiServiceMock),
-      Bind<LocalStorageServiceInterface>((i) => localStorageMock),
-      Bind<UserRepository>((i) => UserRepository(
-          api: Modular.get<ApiInterface>(),
-          localStorage: Modular.get<LocalStorageServiceInterface>()
-      )),
-    ]
-    );
-  initModule(
-   HomeModule(),
-   initialModule: false,
-   changeBinds: [
-     Bind<HomeController>((i) => HomeController(
-          apiService: Modular.get<ApiInterface>(),
-          userRepository: Modular.get<UserRepository>(),
-          )),
-   ]
-   );
-  HomeController homeController;
 
-  setUp(() async  {
-    homeController = Modular.get<HomeController>(); 
-  });
-
-  group('HomeController tests when the user login first time', () { 
-
-    when(localStorageMock.getUserStatus()).thenAnswer((_) async{
+  when(localStorageMock.getUserStatus()).thenAnswer((_) async{
           return Future.value(false);
     });
 
@@ -63,36 +34,35 @@ void main() {
     });
 
     when(apiServiceMock.getFeedRequest(ACESS_TOKEN, ORGANIZATION_ID, 1)).thenAnswer((_) async{
-      return Future.value(FeedRequest.fromJson(FEED_JSON));
+      return Future.value(FeedRequest.fromJson(FIRST_FEED_JSON));
     });
 
-    test("Login is called when HomeController is istanciate", () async {
-        verify(apiServiceMock.login("raisaspagnol6@gmail.com", "123456")).called(1);
+    when(apiServiceMock.getFeedRequest(ACESS_TOKEN, ORGANIZATION_ID, 2)).thenAnswer((_) async{
+      return Future.value(FeedRequest.fromJson(SECOND_FEED_JSON));
+    });
+
+
+  HomeController homeController = HomeController(
+    apiService: apiServiceMock,
+    userRepository: UserRepository(api: apiServiceMock, localStorage: localStorageMock)
+     ); 
+
+
+  group('HomeController tests', () { 
+    test("if thereAreMoreItems returns true before the second feed request", () async {
+        expect(homeController.thereAreMoreItems(), true);
+    });
+
+    test("if thereAreMoreItems returns false after the second feed request", () async {
+        await homeController.fetchMoreFeedItems();
+        expect(homeController.thereAreMoreItems(), false);
+    });
+
+    test("Get feed items service is not called if there is no more pages", () async {
+        await homeController.fetchMoreFeedItems();
+        await homeController.fetchMoreFeedItems();
+        verifyNever(apiServiceMock.getFeedRequest(ACESS_TOKEN, ORGANIZATION_ID, 3));
     });
   });
 
-  /* group("HomeController tests when the user has already login", (){
-
-     when(localStorageMock.getUserStatus()).thenAnswer((_) async{
-      return Future.value(true);
-    });
-
-    when(localStorageMock.getUserData()).thenAnswer((_) async {
-      return Future.value(User.fromJson(USER_JSON));
-    });
-
-    when(apiServiceMock.login("raisaspagnol6@gmail.com", "123456")).thenAnswer((_) async{
-      return Future.value(User.fromJson(USER_JSON));
-    });
-
-    when(apiServiceMock.getFeedRequest(ACESS_TOKEN, ORGANIZATION_ID, 1)).thenAnswer((_) async{
-      return Future.value(FeedRequest.fromJson(FEED_JSON));
-    });
-
-     test("If the user has already login fetch user data from local storage", () async {
-        verifyNever(apiServiceMock.login("raisaspagnol6@gmail.com", "123456"));
-        verify(localStorageMock.getUserData()).called(1);
-    });
-
-  }); */
 }

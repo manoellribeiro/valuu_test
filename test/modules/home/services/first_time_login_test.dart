@@ -62,7 +62,7 @@ void main() {
     });
 
     when(apiServiceMock.getFeedRequest(ACESS_TOKEN, ORGANIZATION_ID, 1)).thenAnswer((_) async{
-      return Future.value(FeedRequest.fromJson(FEED_JSON));
+      return Future.value(FeedRequest.fromJson(FIRST_FEED_JSON));
     });
 
     test("Login is called when HomeController is istanciate", () async {
