@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="" width="200px" />
+  <img src="https://github.com/manoellribeiro/valuu_test/blob/master/appPreview.gif" width="200px" />
 </h1>
 
 <h1 align="center">
@@ -24,7 +24,7 @@
 
 - I wrote test to dependency injection, services and home controller.
 <h1 align="start">
-  <img src="https://github.com/manoellribeiro/valuu_test/blob/master/readme/tests.png" width="300px" />
+  <img src="https://github.com/manoellribeiro/valuu_test/blob/master/tests.png" width="300px" />
 </h1>
 
 
