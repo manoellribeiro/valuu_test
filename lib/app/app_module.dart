@@ -20,8 +20,8 @@ class AppModule extends MainModule {
   List<Bind> get binds => [
         Bind((i) => BaseOptions(baseUrl: BASE_URL)),
         Bind((i) => Dio(Modular.get<BaseOptions>())),
-        Bind((i) => AlcanceApi(dio: Modular.get<Dio>())),
-        Bind((i) => SharedPreferencesService()),
+        Bind<ApiInterface>((i) => AlcanceApi(dio: Modular.get<Dio>())),
+        Bind<LocalStorageServiceInterface>((i) => SharedPreferencesService()),
         Bind((i) => UserRepository(
           api: Modular.get<ApiInterface>(),
           localStorage: Modular.get<LocalStorageServiceInterface>()
