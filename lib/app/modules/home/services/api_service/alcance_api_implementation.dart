@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:valuu_app/app/modules/home/models/Feed/FeedItem.dart';
+import 'package:valuu_app/app/modules/home/models/Feed/FeedRequest.dart';
 import 'package:valuu_app/app/modules/home/models/User/User.dart';
 import 'package:valuu_app/app/modules/home/services/api_service/api_interface.dart';
 
@@ -27,7 +28,7 @@ class AlcanceApi implements ApiInterface {
   }
 
   @override
-  Future<List<FeedItem>> getFeedItems(String userToken, String organizationId, int pageNumber) async {
+  Future<FeedRequest> getFeedRequest(String userToken, String organizationId, int pageNumber) async {
     try {
       var feedResponse = await dio.get("api/v1/Progress/Feeds", queryParameters: {
         "organizationId": organizationId,
@@ -36,9 +37,11 @@ class AlcanceApi implements ApiInterface {
         headers: {
          "Authorization": "Bearer $userToken" 
       }));
-        return (feedResponse.data['items'] as List).map((item) => FeedItem.fromJson(item)).toList();
+        return FeedRequest.fromJson(feedResponse.data);
     } on DioError catch (e) {
       throw (e.message);
     } 
-  } 
+  }
+
+  
 }

@@ -1,5 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:valuu_app/app/modules/home/models/Feed/FeedItem.dart';
+import 'package:valuu_app/app/modules/home/models/Feed/FeedRequest.dart';
 import 'package:valuu_app/app/modules/home/repository/user_repository.dart';
 import 'package:valuu_app/app/modules/home/services/api_service/api_interface.dart';
 import '../../../models/User/User.dart';
@@ -14,7 +15,10 @@ abstract class _HomeControllerBase with Store {
   final UserRepository userRepository;
   
   @observable
-  List<FeedItem> feedItemsList;
+  FeedRequest feedRequest;
+
+  @observable
+  ObservableList<FeedItem> feedItemsList;
 
   @observable
   User user;
@@ -33,6 +37,19 @@ abstract class _HomeControllerBase with Store {
 
   @action
   Future fetchFeedItems() async {
-    feedItemsList =  await apiService.getFeedItems(user.acessToken, user.teams[1].organizationId, 1);
+    feedRequest =  await apiService.getFeedRequest(user.acessToken, user.teams[1].organizationId, 1);
+    feedItemsList = feedRequest.items.asObservable();
   }
+
+  @action
+  bool thereAreMoreItems() => feedRequest.pageIndex < feedRequest.totalPages;
+
+  @action
+  Future fetchMoreFeedItems() async {
+    if(thereAreMoreItems()){
+      feedRequest = await apiService.getFeedRequest(user.acessToken, user.teams[0].organizationId, feedRequest.pageIndex + 1);
+      feedItemsList.addAll(feedRequest.items);
+    }
+  }
+
 }

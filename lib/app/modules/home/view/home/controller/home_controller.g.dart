@@ -9,16 +9,31 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeControllerBase, Store {
+  final _$feedRequestAtom = Atom(name: '_HomeControllerBase.feedRequest');
+
+  @override
+  FeedRequest get feedRequest {
+    _$feedRequestAtom.reportRead();
+    return super.feedRequest;
+  }
+
+  @override
+  set feedRequest(FeedRequest value) {
+    _$feedRequestAtom.reportWrite(value, super.feedRequest, () {
+      super.feedRequest = value;
+    });
+  }
+
   final _$feedItemsListAtom = Atom(name: '_HomeControllerBase.feedItemsList');
 
   @override
-  List<FeedItem> get feedItemsList {
+  ObservableList<FeedItem> get feedItemsList {
     _$feedItemsListAtom.reportRead();
     return super.feedItemsList;
   }
 
   @override
-  set feedItemsList(List<FeedItem> value) {
+  set feedItemsList(ObservableList<FeedItem> value) {
     _$feedItemsListAtom.reportWrite(value, super.feedItemsList, () {
       super.feedItemsList = value;
     });
@@ -55,9 +70,33 @@ mixin _$HomeController on _HomeControllerBase, Store {
     return _$fetchFeedItemsAsyncAction.run(() => super.fetchFeedItems());
   }
 
+  final _$fetchMoreFeedItemsAsyncAction =
+      AsyncAction('_HomeControllerBase.fetchMoreFeedItems');
+
+  @override
+  Future<dynamic> fetchMoreFeedItems() {
+    return _$fetchMoreFeedItemsAsyncAction
+        .run(() => super.fetchMoreFeedItems());
+  }
+
+  final _$_HomeControllerBaseActionController =
+      ActionController(name: '_HomeControllerBase');
+
+  @override
+  bool thereAreMoreItems() {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.thereAreMoreItems');
+    try {
+      return super.thereAreMoreItems();
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
+feedRequest: ${feedRequest},
 feedItemsList: ${feedItemsList},
 user: ${user}
     ''';
