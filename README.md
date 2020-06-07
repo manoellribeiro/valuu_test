@@ -32,6 +32,8 @@
 
 Flutter — Google’s UI toolkit for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.
 
+Dart — Dart is a client-optimized language for fast apps on any platform. 
+
 ## ✋🏻 Prerequsites
 
 - [Flutter](https://flutter.dev)
