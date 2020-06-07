@@ -5,12 +5,14 @@ class AppTheme{
 
   AppTheme._();
 
-  static const Color roxoValuu = Color(0xff33DDFF);
+  //This class I use to store all the stylings of my app
+
+  // static const Color roxoValuu = Color(0xff33DDFF);
   
   static final ThemeData lightThemeHome = ThemeData(
     
   );
-    
-
   
+  //static final ThemeData darkThemeHome = ThemeData(); 
+    
 }

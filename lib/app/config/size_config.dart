@@ -3,6 +3,11 @@ import 'package:flutter/rendering.dart';
 
 class SizeConfig {
 
+  //This class I use to divide the screen in blocks,
+  //so I can measure how much blocks my text or image
+  //will occupies in any device with different sizes.
+  //and even check if it is a smartphone or tablet. 
+
   static double _screenWidth;
   static double _screenHeight;
   static double _blockWidth = 0;
@@ -30,7 +35,7 @@ class SizeConfig {
       isMobilePortrait = false;
     }
 
-    _blockWidth = _screenWidth / 100;  //Here I divided the screen in blocks, so I can measure how much blocks my text or image will occupies in any device even with different sizes.
+    _blockWidth = _screenWidth / 100;  
     _blockHeight = _screenHeight / 100;
 
     textMultiplier = _blockHeight;
